@@ -33,7 +33,7 @@ def convert_start_to_UTC(row):
 
 # Alkalmazzuk a konverziót minden sorra:
 nfp_dates["Time"] = nfp_dates.apply(convert_start_to_UTC, axis=1)
-nfp_dates.to_csv('../data/nfp_dates.csv', index=False)
+nfp_dates.to_csv('data/nfp_dates.csv', index=False)
 
 def download_dukascopy(symbol, dates, max_retries=3):
     base_url = "https://datafeed.dukascopy.com/datafeed"
@@ -107,4 +107,4 @@ def download_dukascopy(symbol, dates, max_retries=3):
 
 nfp_eurusd = download_dukascopy("EURUSD", nfp_dates)
 
-nfp_eurusd.to_csv('../data/nfp_eurusd.csv', index=False)
+nfp_eurusd.to_csv('data/nfp_eurusd.csv', index=False)
