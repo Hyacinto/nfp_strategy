@@ -112,6 +112,6 @@ def download_dukascopy(symbol, dates, max_retries=3):
 
     return pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()
 
-nfp_eurusd = download_dukascopy("EURUSD", nfp_dates)
-
-nfp_eurusd.to_csv('data/nfp_eurusd.csv', index=False)
+def download_and_write():
+    nfp_eurusd = download_dukascopy("EURUSD", nfp_dates)
+    nfp_eurusd.to_csv('data/nfp_eurusd.csv', index=False)

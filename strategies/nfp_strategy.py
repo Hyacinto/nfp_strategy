@@ -6,11 +6,11 @@ from datetime import datetime, timedelta
 import pytz
 
 # NFP dátumok betöltése
-nfp_dates = pd.read_csv('../data/nfp_dates.csv')
+nfp_dates = pd.read_csv('data/nfp_dates.csv')
 nfp_dates['Date'] = pd.to_datetime(nfp_dates['Date']).dt.date
 
 # Backtest eredmények betöltése
-df = pd.read_csv('../data/nfp_eurusd_with_indicators.csv')
+df = pd.read_csv('data/nfp_eurusd_with_indicators.csv')
 df['DateTime'] = pd.to_datetime(df['DateTime'])
 df['Date'] = df['DateTime'].dt.date
 

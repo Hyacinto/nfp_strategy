@@ -1,22 +1,20 @@
-from utils import dukascopy as download_data
-from indicators import calculate_indicators
-from utils import filter as filter_data
+from utils.dukascopy import download_and_write
+from indicators.calculate_indicators import calculate_and_save_indicators
+from utils.filter import filtering
 import subprocess
-import os
 
 def run_streamlit():
-    subprocess.Popen(["streamlit", "run", "../strategies/strategy.py"])
+    subprocess.Popen(["streamlit", "run", "strategies/nfp_strategy.py"])
 
 def main():
-    print("Current working directory:", os.getcwd())
     print("🔄 Historical data downloading...")
-    download_data.run()
+    download_and_write()
 
     print("🔄 Indicators calculating...")
-    calculate_indicators.run()
+    calculate_and_save_indicators()
 
     print("🔄 Data filtering...")
-    filter_data.run()
+    filtering()
 
 if __name__ == "__main__":
     main()

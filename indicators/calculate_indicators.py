@@ -31,11 +31,15 @@ def calculate_indicators_for_each_nfp(df: pd.DataFrame) -> pd.DataFrame:
     # Az összes részhalmaz egyesítése
     return pd.concat(all_data, ignore_index=True)
 
-nfp_eurusd = pd.read_csv("data/nfp_eurusd.csv", parse_dates=['DateTime'])
+def calculate_and_save_indicators():
 
-# Indikátorszámítás a szétválasztott adatokra
-nfp_eurusd_with_indicators = calculate_indicators_for_each_nfp(nfp_eurusd)
+    nfp_eurusd = pd.read_csv("data/nfp_eurusd.csv", parse_dates=['DateTime'])
 
-nfp_eurusd_with_indicators.to_csv('data/nfp_eurusd_with_indicators.csv', index=False)
+    # Indikátorszámítás a szétválasztott adatokra
+    nfp_eurusd_with_indicators = calculate_indicators_for_each_nfp(nfp_eurusd)
+
+    nfp_eurusd_with_indicators.to_csv('data/nfp_eurusd_with_indicators.csv', index=False)
+
+
 
 
