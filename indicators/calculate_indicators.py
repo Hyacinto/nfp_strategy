@@ -9,7 +9,7 @@ def calculate_indicators_for_each_nfp(df: pd.DataFrame) -> pd.DataFrame:
         # Rendezés időrendben, ha szükséges
         group = group.sort_index()
 
-        # Indikátorok kiszámítása a csak erre a dátumra vonatkozó két órás adatokra
+        # Indikátorok kiszámítása a csak erre a dátumra vonatkozó négy órás adatokra
         group['SMA_20'] = ta.trend.sma_indicator(group['close'], window=20)
         group['SMA_50'] = ta.trend.sma_indicator(group['close'], window=50)
         group['EMA_20'] = ta.trend.ema_indicator(group['close'], window=20)

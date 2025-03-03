@@ -100,7 +100,7 @@ def download_dukascopy(symbol, dates, max_retries=3):
 
                         
                     else:
-                        print(f"Nincs adat: {url}")
+                        print(f"No data: {url}")
                     break  # Ha sikerült vagy nincs adat, ne próbálkozzunk újra
 
     return pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()

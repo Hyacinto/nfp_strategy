@@ -7,8 +7,8 @@ def data_from_an_intervall(df, dates):
     dates["Date"] = pd.to_datetime(dates["Date"]).dt.date
     dates = dates[dates["Date"].isin(df_dates)]
 
-
     intervals = []
+    
     for _, row in dates.iterrows():
         date = row["Date"]
         start = row["Time"]
