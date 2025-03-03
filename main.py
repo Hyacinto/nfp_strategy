@@ -18,5 +18,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-    print("Every steps completed, visualization prepare...")
+    print("All steps completed, preparing visualization...")
     run_streamlit()
