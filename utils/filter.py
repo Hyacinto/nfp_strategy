@@ -22,8 +22,8 @@ def data_from_an_intervall(df, dates):
 
     return pd.concat(intervals)
 
-df = pd.read_csv("../data/nfp_eurusd_with_indicators.csv", parse_dates=['DateTime'])
-dates = pd.read_csv("../data/nfp_dates.csv")
+df = pd.read_csv("data/nfp_eurusd_with_indicators.csv", parse_dates=['DateTime'])
+dates = pd.read_csv("data/nfp_dates.csv")
 
 filtered_df = data_from_an_intervall(df, dates)
 

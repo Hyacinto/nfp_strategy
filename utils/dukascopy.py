@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, time, timezone
 import requests
 import lzma
 import struct
@@ -28,7 +28,7 @@ def get_daylight_savings_time(year):
 
 def convert_start_to_UTC(row):
     march_second, november_first_sunday = get_daylight_savings_time(row["Date"].year)
-    # Nyári időszámítás (EDT) esetén +4, téli időszámítás (EST) esetén +5
+    # Nyári időszámítás (EDT) esetén +5, téli időszámítás (EST) esetén +4!
     return row["Time"] + (4 if march_second <= row["Date"] < november_first_sunday else 5)
 
 # Alkalmazzuk a konverziót minden sorra:
@@ -45,20 +45,20 @@ def download_dukascopy(symbol, dates, max_retries=3):
         month = date.month - 1  # Dukascopy hónapok: január = 00, február = 01, stb.
         day = date.day
 
-        if year < 2003:  # A Dukascopy adatok csak 2003-tól érhetőek el
-            #print(f"Nincs elérhető adat {date}-ra. Kihagyva...")
+        if year < 2003:  # A Dukascopy adatok csak 2003-tól érhetőek el!
             continue
 
         start = row['Time']
 
-        # Az NFP utáni 2 óra adatainak letöltése
-        for hour in range(start - 2,start + 2):
+        # Az NFP előtti és utáni 2 óra adatainak letöltése
+        for hour in range(start - 2, start + 2):
             url = f"{base_url}/{symbol}/{year}/{month:02d}/{day:02d}/{hour:02d}h_ticks.bi5"
             print(f"Downloading: {url}")
 
             retries = 0
             while retries < max_retries:
-                    response = requests.get(url)   
+                try:
+                    response = requests.get(url, timeout=10)  # timeout beállítása
                     if response.status_code == 200 and len(response.content) > 0:
                         fmt = '>3I2f'
                         data = []
@@ -97,11 +97,18 @@ def download_dukascopy(symbol, dates, max_retries=3):
                         df_combined['DateTime'] = df_combined.index
 
                         all_data.append(df_combined)
-
-                        
+                        break  # Ha sikerült, kilépünk a retry ciklusból
                     else:
                         print(f"No data: {url}")
-                    break  # Ha sikerült vagy nincs adat, ne próbálkozzunk újra
+                        break  # Nincs adat, nincs szükség újrapróbálkozásra
+                except requests.exceptions.RequestException as e:
+                    retries += 1
+                    print(f"Error downloading {url}. Attempt {retries}/{max_retries}. Error: {e}")
+                    if retries >= max_retries:
+                        print(f"Failed to download {url} after {max_retries} attempts.")
+                    else:
+                        # Várakozás, mielőtt újra próbálkozunk
+                        time.sleep(2)
 
     return pd.concat(all_data, ignore_index=True) if all_data else pd.DataFrame()
 
