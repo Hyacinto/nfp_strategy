@@ -18,7 +18,7 @@ st.title('NFP News Trading _Robot_ - For-If-Else Based Backtest')
 
 # Kereskedési napok kiválasztása
 trading_days = df['Date'].unique()
-choosen_day = st.selectbox('Plese choose a trading day:', trading_days)
+choosen_day = st.selectbox('Please choose a trading day:', trading_days)
 
 if choosen_day:
     st.subheader(f'Trading day: {choosen_day}')
@@ -58,7 +58,7 @@ if choosen_day:
     # Kereskedési információk tárolása
     trade_log = []
 
-    for i, row in daily_data.iterrows():
+    for i, row in daily_data.iterrows(): # Minden soron végigmegyünk a DataFrame-en
         current_time = row['DateTime']
 
         # Long belépési feltételek

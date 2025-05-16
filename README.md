@@ -1,6 +1,25 @@
+![Header](trading-robots-ea-750x430.png)
+
 # NFP News Trading Robot
 
 This project is a trading robot that performs backtesting on historical data around Non-Farm Payroll (NFP) announcements. It downloads historical data, calculates technical indicators, filters the data, and visualizes the results using Streamlit.
+
+## Build with
+
+
+[![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://www.python.org/)
+
+[![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+
+[![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
+
+[![Matplotlib](https://img.shields.io/badge/Matplotlib-004080?style=for-the-badge&logo=plotly&logoColor=white)](https://matplotlib.org/)
+
+[![Seaborn](https://img.shields.io/badge/Seaborn-4B8BBE?style=for-the-badge&logo=python&logoColor=white)](https://seaborn.pydata.org/)
+
+[![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)](https://plotly.com/)
+
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 
 
 ## Setup
